@@ -1,17 +1,25 @@
-function calculateAge(){
+function calculateAge() {
+    const dobValue = document.getElementById("dob").value;
 
-    let dob = new Date(document.getElementById("dob").value);
+    if (!dobValue) {
+        alert("Please select your date of birth.");
+        return;
+    }
 
-    let today = new Date();
+    const dob = new Date(dobValue);
+    const today = new Date();
 
     let age = today.getFullYear() - dob.getFullYear();
 
-    let month = today.getMonth() - dob.getMonth();
+    const monthDiff = today.getMonth() - dob.getMonth();
 
-    if(month < 0 || (month === 0 && today.getDate() < dob.getDate())){
+    if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < dob.getDate())
+    ) {
         age--;
     }
 
-    document.getElementById("result").innerHTML =
-    "Your Age is " + age + " years";
+    document.getElementById("result").textContent =
+        "Your age is " + age + " years.";
 }
